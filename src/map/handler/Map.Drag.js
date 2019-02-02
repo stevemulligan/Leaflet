@@ -50,7 +50,12 @@ Map.mergeOptions({
 	// user to drag outside the bounds at normal speed, higher values will
 	// slow down map dragging outside bounds, and `1.0` makes the bounds fully
 	// solid, preventing the user from dragging outside the bounds.
-	maxBoundsViscosity: 0.0
+	maxBoundsViscosity: 0.0,
+
+	// bit 1, left, 1
+	// bit 2, middle, 2
+	// bit 3, right, 4
+	draggableButtonMask: 4
 });
 
 export var Drag = Handler.extend({
@@ -58,7 +63,7 @@ export var Drag = Handler.extend({
 		if (!this._draggable) {
 			var map = this._map;
 
-			this._draggable = new Draggable(map._mapPane, map._container);
+			this._draggable = new Draggable(map._mapPane, map._container, true, {draggableButtonMask: map.options.draggableButtonMask});
 
 			this._draggable.on({
 				dragstart: this._onDragStart,
