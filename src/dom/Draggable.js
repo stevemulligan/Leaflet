@@ -98,7 +98,7 @@ export var Draggable = Evented.extend({
 
 		var buttonMask = Math.pow(e.button, 2);
 		var whichMask = Math.pow(e.which - 1, 2);
-		if (Draggable._dragging || ( ((e.which > 0) && ((whichMask & this.options.draggableButtonMask) === 0)) && ((buttonMask & this.options.draggableButtonMask) === 0))) { return; }
+		if (Draggable._dragging || (((e.which > 0) && ((whichMask & this.options.draggableButtonMask) === 0)) && ((buttonMask & this.options.draggableButtonMask) === 0))) { return; }
 		Draggable._dragging = this;  // Prevent dragging multiple objects at once.
 
 		if (this._preventOutline) {
