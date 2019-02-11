@@ -96,9 +96,10 @@ export var Draggable = Evented.extend({
 
 		if (DomUtil.hasClass(this._element, 'leaflet-zoom-anim')) { return; }
 
-		var buttonMask = Math.pow(e.button, 2);
-		var whichMask = Math.pow(e.which - 1, 2);
-		if (Draggable._dragging || (((e.which > 0) && ((whichMask & this.options.draggableButtonMask) === 0)) && ((buttonMask & this.options.draggableButtonMask) === 0))) { return; }
+		var buttonMask = Math.pow(2, e.button);
+		var whichMask = Math.pow(2, e.which - 1);
+		var clicked = ((e.which > 0) && ((whichMask & this.options.draggableButtonMask) === whichMask)) || ((buttonMask & this.options.draggableButtonMask) === buttonMask);
+		if (Draggable._dragging || !clicked) { return; }
 		Draggable._dragging = this;  // Prevent dragging multiple objects at once.
 
 		if (this._preventOutline) {

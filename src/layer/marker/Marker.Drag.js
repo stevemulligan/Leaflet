@@ -32,7 +32,7 @@ export var MarkerDrag = Handler.extend({
 		var icon = this._marker._icon;
 
 		if (!this._draggable) {
-			this._draggable = new Draggable(icon, icon, true);
+			this._draggable = new Draggable(icon, icon, true, {draggableButtonMask: 1});
 		}
 
 		this._draggable.on({
